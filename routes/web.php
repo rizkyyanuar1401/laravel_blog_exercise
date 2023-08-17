@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
@@ -30,10 +32,21 @@ Route::get('/about', function () {
 });
 
 Route::get('/blogs', [PostController::class, 'index']);
+
 Route::get('/blogs/{post:slug}', [PostController::class, 'show']);
+
 Route::get('/categories', function () {
-    return view ('categories', [
-        "title" => "Categories",
-        "categories" => \App\Models\Category::all()
+    return view('categories', [
+        'title' => 'Post Categories',
+        'active' => 'categories',
+        'categories' => Category::all()
     ]);
 });
+
+
+// Route::get('/authors/{author:username}', function(User $author) {
+//     return view('posts', [
+//         'title' => "Posts by Author: $author -> name",
+//         'posts' => $author->posts
+//     ]);
+// });
