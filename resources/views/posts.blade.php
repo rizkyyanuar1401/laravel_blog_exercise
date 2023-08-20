@@ -78,4 +78,10 @@
         <p class="text-center fs-5">No Posts Found</p>
     @endif
 
+    <div class="container">
+        <div class="row">
+             {{ $posts->links('pagination::bootstrap-5') }}
+        </div>
+    </div>
+
 @endsection
