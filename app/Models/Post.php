@@ -10,7 +10,6 @@ class Post extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $fillable = ['name'];
     protected $with = ['category', 'author'];
 
     public function scopeFilter($query, array $filters)
@@ -26,15 +25,21 @@ class Post extends Model
             });
         });
 
-        $query->when(
-            $filters['author'] ?? false,
-            fn ($query, $author) =>
-            $query->whereHas(
-                'author',
-                fn ($query) =>
-                $query->where('username', $author)
-            )
-        );
+        // $query->when(
+        //     $filters['author'] ?? false,
+        //     fn ($query, $author) =>
+        //     $query->whereHas(
+        //         'author',
+        //         fn ($query) =>
+        //         $query->where('username', $author)
+        //     )
+        // );
+
+        $query->when($filters['author'] ?? false, function($query, $author) {
+            return $query->whereHas('author', function ($query) use ($author) {
+                $query->where('username', $author);
+            });
+        });
     }
 
     public function category()

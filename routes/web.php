@@ -1,10 +1,7 @@
 <?php
 
 use App\Models\Category;
-<<<<<<< HEAD
 use App\Models\User;
-=======
->>>>>>> f09f359ce93db3e3db08c8ee641039eb2cc7a8f3
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
@@ -21,7 +18,8 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('home', [
-        "title" => "Home"
+        "title" => "Home",
+        "active" => "home"
     ]);
 });
 
@@ -43,17 +41,6 @@ Route::get('/categories', function () {
         'title' => 'Post Categories',
         'active' => 'categories',
         'categories' => Category::all()
-<<<<<<< HEAD
-=======
-    ]);
-});
-
-Route::get('/categories/{category:slug}', function(Category $category) {
-    return view('categories', [
-        'title' => $category -> name,
-        'posts' => $category -> posts,
-        'category' => $category ->name
->>>>>>> f09f359ce93db3e3db08c8ee641039eb2cc7a8f3
     ]);
 });
 

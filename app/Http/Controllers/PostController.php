@@ -21,7 +21,7 @@ class PostController extends Controller
             $title = ' in ' . $category->name;
         }
 
-        if (request('author')) {
+        else if (request('author')) {
             $author = User::firstWhere('username', request('author'));
             $title = ' by ' . $author->name;
         }
@@ -54,7 +54,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view ('posts', [
+        return view ('post', [
             "title" => "Single Post",
             "post" => $post
         ]);
