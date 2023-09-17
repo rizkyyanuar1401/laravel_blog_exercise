@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminCategoryController;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -78,3 +79,5 @@ Route::delete('/dashboard/posts/{post:slug}', [DashboardPostController::class, '
 Route::get('/dashboard/posts/{post:slug}/edit', [DashboardPostController::class, 'edit'])->middleware('auth');
 // // Update Method
 Route::patch('/dashboard/posts/{post:slug}', [DashboardPostController::class, 'update'])->middleware('auth');
+
+Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
